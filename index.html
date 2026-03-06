@@ -10,8 +10,9 @@
   <meta name="apple-mobile-web-app-title" content="Maa Kama Dental" />
   <title>Maa Kama Dental Clinic</title>
 
-  <!-- PWA Manifest (inline via JS) -->
+  <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1167,55 +1168,13 @@
     }
 
     // ── PWA Manifest (injected) ──
-    const manifestData = {
-      name: "Maa Kama Dental Clinic",
-      short_name: "Maa Kama Dental",
-      description: "Book appointments and chat with Maa Kama Dental Clinic",
-      start_url: "./",
-      display: "standalone",
-      background_color: "#fef9f2",
-      theme_color: "#0f4c5c",
-      orientation: "portrait-primary",
-      icons: [
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%230f4c5c'/%3E%3Cpath d='M96 30C72 30 52 48 52 72C52 90 58 104 65 118C72 132 77 148 82 158C85 164 88 170 96 170C104 170 107 164 110 158C115 148 120 132 127 118C134 104 140 90 140 72C140 48 120 30 96 30Z' fill='white' opacity='0.95'/%3E%3C/svg%3E", sizes: "192x192", type: "image/svg+xml" },
-        { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%230f4c5c'/%3E%3Cpath d='M256 80C208 80 168 116 168 168C168 208 178 232 190 256C202 280 210 308 218 328C222 340 228 356 256 356C284 356 290 340 294 328C302 308 310 280 322 256C334 232 344 208 344 168C344 116 304 80 256 80Z' fill='white' opacity='0.95'/%3E%3C/svg%3E", sizes: "512x512", type: "image/svg+xml" }
-      ],
-      categories: ["health", "medical"],
-      shortcuts: [
-        { name: "Book Appointment", short_name: "Book", description: "Book a dental appointment", url: "./#appointment" },
-        { name: "WhatsApp Chat", short_name: "Chat", description: "Chat with us on WhatsApp", url: "https://wa.me/YOURNUMBER" }
-      ]
-    };
-
-    const blob = new Blob([JSON.stringify(manifestData)], { type: 'application/json' });
-    const manifestURL = URL.createObjectURL(blob);
-    document.querySelector('link[rel="manifest"]').href = manifestURL;
-
-    // ── Service Worker ──
+    // ── Register real Service Worker (sw.js must be in same folder) ──
     if ('serviceWorker' in navigator) {
-      const sw = `
-        const CACHE = 'maa-kama-dental-v1';
-        const ASSETS = ['./', './index.html'];
-
-        self.addEventListener('install', e => {
-          e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
-          self.skipWaiting();
-        });
-        self.addEventListener('activate', e => {
-          e.waitUntil(caches.keys().then(keys =>
-            Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-          ));
-          self.clients.claim();
-        });
-        self.addEventListener('fetch', e => {
-          e.respondWith(
-            caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('./index.html')))
-          );
-        });
-      `;
-      const swBlob = new Blob([sw], { type: 'application/javascript' });
-      const swURL  = URL.createObjectURL(swBlob);
-      navigator.serviceWorker.register(swURL).catch(() => {});
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('SW registered, scope:', reg.scope))
+          .catch(err => console.warn('SW registration failed:', err));
+      });
     }
 
     // ── PWA Install Prompt ──
