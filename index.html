@@ -1,1214 +1,661 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f4c5c" />
-  <meta name="description" content="Maa Kama Dental Clinic – Gentle, trusted dental care for your whole family. Book an appointment online or chat with us on WhatsApp." />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Maa Kama Dental" />
-  <title>Maa Kama Dental Clinic</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Maa Kama Dental Clinic | Premium Futuristic Care</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a7889",
+                        "accent-gold": "#d4af37",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#121e20",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Smooth Scrolling Implementation */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon-192.svg" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── Variables ── */
-    :root {
-      --teal-deep:   #0f4c5c;
-      --teal-mid:    #1a7a8a;
-      --teal-light:  #c8e6ea;
-      --cream:       #fef9f2;
-      --cream-dark:  #f4ede0;
-      --gold:        #c9943a;
-      --gold-light:  #f5dca0;
-      --text-dark:   #1a2e35;
-      --text-muted:  #5a7a82;
-      --white:       #ffffff;
-      --shadow:      0 8px 40px rgba(15,76,92,0.13);
-      --shadow-sm:   0 2px 12px rgba(15,76,92,0.08);
-      --radius:      18px;
-      --radius-sm:   10px;
-    }
-
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--cream);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--cream-dark); }
-    ::-webkit-scrollbar-thumb { background: var(--teal-mid); border-radius: 99px; }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatTooth {
-      0%, 100% { transform: translateY(0px) rotate(-4deg); }
-      50%       { transform: translateY(-14px) rotate(2deg); }
-    }
-    @keyframes pulse-ring {
-      0%   { transform: scale(1);   opacity: 0.7; }
-      100% { transform: scale(1.6); opacity: 0; }
-    }
-    @keyframes shimmer {
-      0%   { background-position: -200% center; }
-      100% { background-position:  200% center; }
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .anim-fade { animation: fadeUp 0.7s ease both; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.22s; }
-    .delay-3 { animation-delay: 0.34s; }
-    .delay-4 { animation-delay: 0.46s; }
-
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 28px;
-      background: rgba(254,249,242,0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(15,76,92,0.09);
-      box-shadow: var(--shadow-sm);
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.22rem;
-      font-weight: 700;
-      color: var(--teal-deep);
-      text-decoration: none;
-    }
-    .nav-brand svg { flex-shrink: 0; }
-    .nav-links { display: flex; align-items: center; gap: 6px; }
-    .nav-links a {
-      padding: 7px 16px;
-      border-radius: 99px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .nav-links a:hover { color: var(--teal-deep); background: var(--teal-light); }
-    .nav-links .btn-nav {
-      background: var(--teal-deep);
-      color: var(--white);
-      padding: 8px 20px;
-    }
-    .nav-links .btn-nav:hover { background: var(--teal-mid); color: var(--white); }
-
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 0;
-      padding-top: 72px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(26,122,138,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(201,148,58,0.07) 0%, transparent 60%);
-    }
-    /* Decorative tooth pattern */
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      right: -60px; top: 50%;
-      transform: translateY(-50%);
-      width: 520px; height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(26,122,138,0.10) 0%, transparent 70%);
-    }
-
-    .hero-left {
-      position: relative; z-index: 1;
-      padding: 60px 48px 60px 64px;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gold-light);
-      color: var(--gold);
-      padding: 6px 16px;
-      border-radius: 99px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .hero-badge span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); display: block; }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--teal-deep);
-      margin-bottom: 18px;
-    }
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-    .hero-sub {
-      font-size: 1.04rem;
-      line-height: 1.7;
-      color: var(--text-muted);
-      max-width: 420px;
-      margin-bottom: 36px;
-    }
-    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 9px;
-      background: var(--teal-deep);
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: 99px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      border: none; cursor: pointer;
-      transition: all 0.25s;
-      box-shadow: 0 4px 20px rgba(15,76,92,0.25);
-    }
-    .btn-primary:hover {
-      background: var(--teal-mid);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(15,76,92,0.30);
-    }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 9px;
-      background: transparent;
-      color: var(--teal-deep);
-      padding: 14px 28px;
-      border-radius: 99px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      border: 2px solid var(--teal-deep);
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .btn-secondary:hover {
-      background: var(--teal-deep);
-      color: var(--white);
-      transform: translateY(-2px);
-    }
-
-    .hero-right {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: center;
-      padding: 60px 64px 60px 20px;
-    }
-    .hero-card {
-      background: var(--white);
-      border-radius: 28px;
-      padding: 36px 32px;
-      box-shadow: var(--shadow);
-      max-width: 380px;
-      width: 100%;
-      border: 1px solid rgba(15,76,92,0.06);
-    }
-    .tooth-float {
-      animation: floatTooth 4s ease-in-out infinite;
-      display: flex; justify-content: center;
-      margin-bottom: 16px;
-    }
-    .hero-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: var(--teal-deep);
-      text-align: center; margin-bottom: 8px;
-    }
-    .hero-card p {
-      font-size: 0.88rem; color: var(--text-muted);
-      text-align: center; margin-bottom: 24px; line-height: 1.6;
-    }
-    .stats-row {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-    }
-    .stat-box {
-      background: var(--cream);
-      border-radius: 14px;
-      padding: 16px 10px;
-      text-align: center;
-      border: 1px solid rgba(15,76,92,0.07);
-    }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 700;
-      color: var(--teal-deep);
-    }
-    .stat-label {
-      font-size: 0.72rem; color: var(--text-muted);
-      font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── Section Base ── */
-    section { padding: 88px 64px; }
-    .section-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--teal-light);
-      color: var(--teal-deep);
-      padding: 6px 16px;
-      border-radius: 99px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 700;
-      color: var(--teal-deep);
-      line-height: 1.15;
-      margin-bottom: 12px;
-    }
-    .section-sub {
-      font-size: 1rem; color: var(--text-muted);
-      line-height: 1.7; max-width: 520px;
-    }
-
-    /* ── Services ── */
-    .services { background: var(--white); }
-    .services-header { text-align: center; margin-bottom: 52px; }
-    .services-header .section-sub { margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .service-card {
-      background: var(--cream);
-      border-radius: var(--radius);
-      padding: 30px 24px;
-      border: 1px solid rgba(15,76,92,0.07);
-      transition: all 0.3s;
-      cursor: default;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-      border-color: var(--teal-light);
-      background: var(--white);
-    }
-    .service-icon {
-      width: 52px; height: 52px;
-      background: var(--teal-light);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 16px;
-      color: var(--teal-deep);
-      font-size: 1.5rem;
-    }
-    .service-card h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 8px;
-    }
-    .service-card p {
-      font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;
-    }
-
-    /* ── Appointment ── */
-    .appointment {
-      background: var(--cream);
-      position: relative; overflow: hidden;
-    }
-    .appointment::before {
-      content: '';
-      position: absolute; bottom: -80px; right: -80px;
-      width: 340px; height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,148,58,0.08) 0%, transparent 70%);
-    }
-    .appointment-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.4fr;
-      gap: 60px; align-items: start;
-    }
-    .appt-info { position: sticky; top: 100px; }
-    .appt-info .section-sub { margin-bottom: 28px; }
-
-    .appt-steps { display: flex; flex-direction: column; gap: 18px; }
-    .appt-step {
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .step-num {
-      width: 36px; height: 36px; flex-shrink: 0;
-      background: var(--teal-deep);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.85rem;
-    }
-    .step-text h5 {
-      font-weight: 700; font-size: 0.95rem;
-      color: var(--teal-deep); margin-bottom: 2px;
-    }
-    .step-text p { font-size: 0.85rem; color: var(--text-muted); }
-
-    /* Form Card */
-    .form-card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 40px 36px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15,76,92,0.06);
-    }
-    .form-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 6px;
-    }
-    .form-card > p {
-      font-size: 0.88rem; color: var(--text-muted);
-      margin-bottom: 28px; line-height: 1.6;
-    }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { margin-bottom: 18px; }
-    .form-group label {
-      display: block;
-      font-size: 0.82rem; font-weight: 700;
-      color: var(--teal-deep);
-      margin-bottom: 7px;
-      text-transform: uppercase; letter-spacing: 0.04em;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1.5px solid rgba(15,76,92,0.15);
-      border-radius: var(--radius-sm);
-      font-family: 'Nunito', sans-serif;
-      font-size: 0.95rem;
-      color: var(--text-dark);
-      background: var(--cream);
-      transition: all 0.2s;
-      outline: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--teal-mid);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(26,122,138,0.12);
-    }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #b0c4c8; }
-
-    .phone-row { display: flex; gap: 10px; }
-    .phone-code {
-      width: 90px; flex-shrink: 0;
-    }
-    .form-submit {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 99px;
-      background: var(--teal-deep);
-      color: var(--white);
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 9px;
-      transition: all 0.25s;
-      box-shadow: 0 4px 20px rgba(15,76,92,0.25);
-      margin-top: 8px;
-    }
-    .form-submit:hover {
-      background: var(--teal-mid);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(15,76,92,0.30);
-    }
-    .form-submit:disabled {
-      opacity: 0.6; cursor: not-allowed; transform: none;
-    }
-
-    /* Google Form Option */
-    .google-form-option {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px dashed rgba(15,76,92,0.15);
-      text-align: center;
-    }
-    .google-form-option p {
-      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px;
-    }
-    .btn-gform {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--cream);
-      color: var(--teal-deep);
-      padding: 11px 22px;
-      border-radius: 99px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      text-decoration: none;
-      border: 1.5px solid rgba(15,76,92,0.18);
-      transition: all 0.2s;
-    }
-    .btn-gform:hover {
-      background: var(--teal-light);
-      border-color: var(--teal-mid);
-    }
-
-    /* Success state */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 32px 20px;
-    }
-    .form-success.show { display: block; }
-    .success-icon {
-      width: 72px; height: 72px;
-      background: linear-gradient(135deg, var(--teal-mid), var(--teal-deep));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 18px;
-      box-shadow: 0 8px 30px rgba(15,76,92,0.25);
-    }
-    .form-success h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem; font-weight: 700;
-      color: var(--teal-deep); margin-bottom: 8px;
-    }
-    .form-success p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
-
-    /* ── WhatsApp Section ── */
-    .whatsapp-section {
-      background: linear-gradient(135deg, var(--teal-deep) 0%, #0d3844 100%);
-      padding: 80px 64px;
-      position: relative; overflow: hidden;
-    }
-    .whatsapp-section::before {
-      content: '';
-      position: absolute; top: -60px; left: -60px;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      border: 60px solid rgba(255,255,255,0.04);
-    }
-    .whatsapp-section::after {
-      content: '';
-      position: absolute; bottom: -80px; right: -40px;
-      width: 240px; height: 240px;
-      border-radius: 50%;
-      border: 40px solid rgba(255,255,255,0.04);
-    }
-    .wa-inner {
-      max-width: 900px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 40px; flex-wrap: wrap;
-      position: relative; z-index: 1;
-    }
-    .wa-text .section-tag {
-      background: rgba(255,255,255,0.15);
-      color: var(--white);
-    }
-    .wa-text .section-title { color: var(--white); }
-    .wa-text .section-sub { color: rgba(255,255,255,0.72); max-width: 400px; }
-
-    .wa-btn {
-      display: flex; align-items: center; gap: 14px;
-      background: #25D366;
-      color: var(--white);
-      padding: 18px 32px;
-      border-radius: 99px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: all 0.25s;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.35);
-      position: relative;
-    }
-    .wa-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(37,211,102,0.45);
-    }
-    .wa-pulse {
-      position: absolute; top: -4px; right: -4px;
-      width: 14px; height: 14px;
-    }
-    .wa-pulse::before, .wa-pulse::after {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 50%;
-      background: #ff4757;
-    }
-    .wa-pulse::after {
-      animation: pulse-ring 1.5s ease-out infinite;
-    }
-
-    /* ── Floating WhatsApp ── */
-    .fab-whatsapp {
-      position: fixed; bottom: 28px; right: 28px;
-      width: 60px; height: 60px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
-      text-decoration: none;
-      z-index: 200;
-      transition: all 0.25s;
-    }
-    .fab-whatsapp:hover {
-      transform: scale(1.1);
-      box-shadow: 0 10px 32px rgba(37,211,102,0.55);
-    }
-    .fab-ring {
-      position: absolute; inset: -6px;
-      border-radius: 50%;
-      border: 2px solid rgba(37,211,102,0.4);
-      animation: pulse-ring 2s ease-out infinite;
-    }
-
-    /* ── Contact ── */
-    .contact { background: var(--white); }
-    .contact-inner {
-      max-width: 1000px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
-    }
-    .contact-info-list { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; }
-    .contact-item {
-      display: flex; align-items: flex-start; gap: 16px;
-    }
-    .contact-icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      background: var(--teal-light);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--teal-deep);
-    }
-    .contact-item h5 {
-      font-weight: 700; font-size: 0.88rem;
-      color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: 0.04em;
-      margin-bottom: 3px;
-    }
-    .contact-item p { font-size: 0.95rem; color: var(--text-dark); line-height: 1.5; }
-
-    .map-placeholder {
-      border-radius: var(--radius);
-      overflow: hidden;
-      height: 300px;
-      background: var(--cream);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 12px;
-      border: 2px dashed rgba(15,76,92,0.15);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* ── Footer ── */
-    footer {
-      background: var(--teal-deep);
-      color: rgba(255,255,255,0.7);
-      padding: 40px 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px;
-    }
-    .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--white);
-    }
-    .footer-brand span { display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.7; margin-top: 2px; }
-    footer p { font-size: 0.82rem; }
-
-    /* ── Toast ── */
-    .toast {
-      position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px);
-      background: var(--teal-deep);
-      color: var(--white);
-      padding: 13px 24px;
-      border-radius: 99px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: var(--shadow);
-      opacity: 0; pointer-events: none;
-      transition: all 0.3s;
-      z-index: 300;
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* ── Install Banner ── */
-    .install-banner {
-      display: none;
-      position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
-      background: var(--white);
-      border-radius: 18px;
-      padding: 18px 22px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15,76,92,0.1);
-      max-width: 340px; width: 90%;
-      z-index: 201;
-      align-items: center; gap: 14px;
-    }
-    .install-banner.show { display: flex; }
-    .install-banner p { font-size: 0.88rem; color: var(--text-dark); flex: 1; line-height: 1.4; }
-    .install-banner strong { color: var(--teal-deep); }
-    .btn-install {
-      background: var(--teal-deep); color: var(--white);
-      border: none; border-radius: 99px;
-      padding: 9px 18px; font-size: 0.82rem; font-weight: 700;
-      cursor: pointer; white-space: nowrap; transition: all 0.2s;
-    }
-    .btn-install:hover { background: var(--teal-mid); }
-    .btn-install-close {
-      background: none; border: none;
-      color: var(--text-muted); cursor: pointer;
-      font-size: 1.1rem; padding: 2px;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      nav { padding: 12px 20px; }
-      .nav-links a:not(.btn-nav) { display: none; }
-
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-left { padding: 40px 24px 24px; }
-      .hero-sub { margin: 0 auto 28px; }
-      .hero-ctas { justify-content: center; }
-      .hero-right { padding: 0 24px 48px; }
-
-      section { padding: 60px 24px; }
-      .appointment-inner { grid-template-columns: 1fr; gap: 36px; }
-      .appt-info { position: static; }
-      .form-row { grid-template-columns: 1fr; }
-
-      .wa-inner { flex-direction: column; text-align: center; }
-      .wa-text .section-sub { margin: 0 auto; }
-
-      .contact-inner { grid-template-columns: 1fr; }
-      .contact-inner > div:last-child { order: -1; }
-
-      .whatsapp-section { padding: 60px 24px; }
-      footer { padding: 28px 24px; flex-direction: column; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .hero-title { font-size: 2.2rem; }
-      .hero-ctas { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .phone-row { flex-direction: column; }
-      .phone-code { width: 100%; }
-    }
-  </style>
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(18, 30, 32, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #1a7889 0%, #3db5c9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(26, 120, 137, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(61, 181, 201, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Modal Animation */
+        #serviceModal {
+            transition: opacity 0.3s ease;
+        }
+        #modalContent {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30">
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#" class="nav-brand">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <rect width="32" height="32" rx="9" fill="#0f4c5c"/>
-        <path d="M16 6C12 6 9 9 9 12.5C9 17 11 19.5 13 22C14 23.5 14.5 25 16 25C17.5 25 18 23.5 19 22C21 19.5 23 17 23 12.5C23 9 20 6 16 6Z" fill="white" opacity="0.9"/>
-        <path d="M16 6C13 6 9 8.5 9 12.5" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
-      </svg>
-      Maa Kama Dental
-    </a>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#appointment">Appointment</a>
-      <a href="#contact">Contact</a>
-      <a href="#appointment" class="btn-nav">Book Now</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="hero-bg"></div>
-    <div class="hero-left">
-      <div class="hero-badge anim-fade"><span></span>Trusted Dental Care</div>
-      <h1 class="hero-title anim-fade delay-1">
-        Your Smile is Our<br/><em>Greatest Reward</em>
-      </h1>
-      <p class="hero-sub anim-fade delay-2">
-        At Maa Kama Dental Clinic, we combine gentle care with modern dentistry to give you and your family the healthy, beautiful smile you deserve.
-      </p>
-      <div class="hero-ctas anim-fade delay-3">
-        <a href="#appointment" class="btn-primary">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Book Appointment
-        </a>
-        <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.11 1.513 5.845L.057 23.882l6.18-1.621A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.368l-.36-.214-3.7.97.988-3.613-.234-.371A9.818 9.818 0 012.182 12C2.182 6.557 6.557 2.182 12 2.182S21.818 6.557 21.818 12 17.443 21.818 12 21.818z"/></svg>
-          Chat on WhatsApp
-        </a>
-      </div>
-    </div>
-    <div class="hero-right anim-fade delay-2">
-      <div class="hero-card">
-        <div class="tooth-float">
-          <svg width="80" height="90" viewBox="0 0 80 90" fill="none">
-            <path d="M40 5C28 5 15 12 15 26C15 32 17 38 19 44C22 53 24 62 27 70C28.5 74.5 30 80 33 82C35 83.5 37 83 40 83C43 83 45 83.5 47 82C50 80 51.5 74.5 53 70C56 62 58 53 61 44C63 38 65 32 65 26C65 12 52 5 40 5Z" fill="#c8e6ea" stroke="#1a7a8a" stroke-width="2.5"/>
-            <path d="M32 18C28 20 24 24 23 28" stroke="#1a7a8a" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-            <circle cx="40" cy="28" r="4" fill="white" opacity="0.7"/>
-          </svg>
+    <!-- Service Modal Structure -->
+    <div id="serviceModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div id="modalContent" class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl transform scale-95 opacity-0">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div id="modalIcon" class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary mb-5"></div>
+            <h4 id="modalTitle" class="text-2xl font-bold mb-4 text-slate-900 dark:text-white"></h4>
+            <p id="modalDescription" class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6"></p>
+            <button onclick="closeModal()" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-bold transition-colors">
+                Close Details
+            </button>
         </div>
-        <h3>Maa Kama Dental Clinic</h3>
-        <p>Compassionate care for every smile, big and small.</p>
-        <div class="stats-row">
-          <div class="stat-box">
-            <div class="stat-num">10+</div>
-            <div class="stat-label">Years</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">5k+</div>
-            <div class="stat-label">Patients</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Care</div>
-          </div>
+    </div>
+
+    <!-- Sticky Glassmorphic Nav -->
+    <nav class="sticky top-0 z-50 w-full px-6 py-4">
+        <div class="max-w-7xl mx-auto glass rounded-2xl px-6 py-3 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-3">
+                <div class="bg-white rounded-lg p-1 flex items-center justify-center shadow-lg shadow-primary/10">
+                    <img src="icon_512x512.png" alt="Maa Kama Logo" class="h-8 w-8 object-contain">
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Maa Kama <span class="text-primary">Dental</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#about">Why Us</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#contact">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden sm:flex bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold shadow-md transition-all active:scale-95 cursor-pointer">
+                    Book Now
+                </a>
+                <button class="md:hidden text-slate-900 dark:text-white">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Services -->
-  <section class="services" id="services">
-    <div class="services-header">
-      <div class="section-tag">Our Services</div>
-      <h2 class="section-title">Everything Your Smile Needs</h2>
-      <p class="section-sub">From routine check-ups to advanced restorative treatments — all under one roof, with a gentle touch.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🦷</div>
-        <h4>General Dentistry</h4>
-        <p>Comprehensive check-ups, cleanings, fillings, and preventive care for the whole family.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">✨</div>
-        <h4>Teeth Whitening</h4>
-        <p>Professional in-chair whitening treatments for a brighter, more confident smile.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🦴</div>
-        <h4>Dental Implants</h4>
-        <p>Permanent tooth replacement solutions that look and feel completely natural.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">😁</div>
-        <h4>Orthodontics</h4>
-        <p>Braces and clear aligners to straighten teeth and improve bite alignment.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🪥</div>
-        <h4>Root Canal</h4>
-        <p>Pain-free root canal treatment to save infected teeth using modern techniques.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">👶</div>
-        <h4>Paediatric Dentistry</h4>
-        <p>Child-friendly dental care in a warm, welcoming environment they'll love.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Appointment -->
-  <section class="appointment" id="appointment">
-    <div class="appointment-inner">
-      <div class="appt-info">
-        <div class="section-tag">Book an Appointment</div>
-        <h2 class="section-title">Reserve Your Visit Today</h2>
-        <p class="section-sub">Fill in the quick form and we'll confirm your appointment within 24 hours. Prefer a faster response? Chat with us directly on WhatsApp.</p>
-        <div class="appt-steps" style="margin-top:32px">
-          <div class="appt-step">
-            <div class="step-num">1</div>
-            <div class="step-text">
-              <h5>Fill the Form</h5>
-              <p>Enter your name, contact number & preferred date.</p>
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex items-center overflow-hidden hero-gradient px-6" id="home">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            <div class="relative z-10 space-y-8">
+                <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full">
+                    <span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-primary text-xs font-bold uppercase tracking-widest">New Standard in Dentistry</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                    Modern <span class="text-gradient">Dental Care</span> for Your Smile
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+                    Experience the future of dentistry with our premium, technology-driven care in a calming environment. We redefine your dental journey with precision and luxury.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#contact" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all flex items-center justify-center gap-2 group cursor-pointer">
+                        Book Appointment
+                        <span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                    <button class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-green-500">chat</span>
+                        WhatsApp Chat
+                    </button>
+                </div>
+                <div class="flex items-center gap-6 pt-8">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-400"></div>
+                    </div>
+                    <div class="text-sm">
+                        <div class="flex items-center text-accent-gold">
+                            <span class="material-symbols-outlined text-sm fill-1">star</span>
+                            <span class="material-symbols-outlined text-sm fill-1">star</span>
+                            <span class="material-symbols-outlined text-sm fill-1">star</span>
+                            <span class="material-symbols-outlined text-sm fill-1">star</span>
+                            <span class="material-symbols-outlined text-sm fill-1">star</span>
+                        </div>
+                        <p class="text-slate-500 font-medium">Trusted by 2,000+ patients</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="appt-step">
-            <div class="step-num">2</div>
-            <div class="step-text">
-              <h5>We Confirm</h5>
-              <p>Our team will call or WhatsApp you within a few hours.</p>
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="relative w-full aspect-square max-w-[500px]">
+                    <div class="absolute inset-0 bg-primary/20 rounded-full blur-[100px]"></div>
+                    <div class="relative z-10 w-full h-full bg-white/20 backdrop-blur-3xl rounded-[3rem] border border-white/30 shadow-2xl overflow-hidden flex items-center justify-center">
+                        <div class="w-4/5 h-4/5 bg-slate-101 rounded-3xl overflow-hidden shadow-inner relative">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <img alt="Premium 3D Dental Model" class="w-full h-full object-cover mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLFXVE7oVzQLumOcjs2jZlW9kdnYEQWNlRuv2pqijp5apqNSY1NIrjCbRa0KnxnO8faeLvrazOSr6LvWyMpq_yFjl11GceCD2ey48sMOKxYeKKL7xF2kS1-PfjgO7CuDZTslvuXDb8vNOkO5Gk5b73qhFIoSihWkftyaxLHC3Lb5XdJApCmZfc8Ewj1ED54wSQtfsV9BBZNbxW7l9DhrXMxl1OHtqSlB2Gzks3VLTvszfSVPjd4WVypjYPntWtKq5IyR8n5T2AHmw4"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 glass p-4 rounded-2xl shadow-xl animate-bounce z-[50]">
+                        <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 glass p-5 rounded-2xl shadow-xl z-50">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <span class="text-xs font-bold">24/7 Digital Support</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="appt-step">
-            <div class="step-num">3</div>
-            <div class="step-text">
-              <h5>Visit Us</h5>
-              <p>Walk in at your scheduled time and we take care of the rest.</p>
-            </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <div class="form-card">
-        <h3>Patient Appointment Form</h3>
-        <p>All fields marked with * are required. We respect your privacy.</p>
-
-        <div id="formBody">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name *</label>
-              <input type="text" id="fname" placeholder="e.g. Priya" />
+    <!-- Services Section -->
+    <section class="py-24 px-6 bg-slate-50/50 dark:bg-slate-900/20" id="services">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <h2 class="text-primary font-bold tracking-widest uppercase text-xs">Our Expertise</h2>
+                <h3 class="text-4xl font-black text-slate-900 dark:text-white">Premium Services</h3>
+                <p class="text-slate-600 dark:text-slate-400">Tailored dental solutions using the most advanced medical technology available today.</p>
             </div>
-            <div class="form-group">
-              <label>Last Name *</label>
-              <input type="text" id="lname" placeholder="e.g. Sharma" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">cleaning_services</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Teeth Cleaning</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Professional scaling and deep polishing to keep your enamel shining and gums healthy.</p>
+                    <a onclick="openModal('cleaning')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">dentistry</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Filling</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">High-durability aesthetic restorations that blend seamlessly with your natural tooth color.</p>
+                    <a onclick="openModal('filling')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">medication</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Root Canal</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Painless endodontic procedures using microscopic technology for absolute precision.</p>
+                    <a onclick="openModal('rootcanal')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">grid_view</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Braces</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Modern orthodontic solutions from clear aligners to high-tech ceramic systems.</p>
+                    <a onclick="openModal('braces')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">add_box</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Implants</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Permanent titanium tooth replacement that feels and functions like your original teeth.</p>
+                    <a onclick="openModal('implants')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="group bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors text-primary">
+                        <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Cosmetic Dentistry</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6">Veneers, teeth whitening, and gum contouring for that perfect Hollywood smile.</p>
+                    <a onclick="openModal('cosmetic')" class="inline-flex items-center gap-2 text-primary text-sm font-bold group-hover:gap-3 transition-all cursor-pointer">
+                        Learn More <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </a>
+                </div>
+
             </div>
-          </div>
-
-          <div class="form-group">
-            <label>Contact Number *</label>
-            <div class="phone-row">
-              <input type="text" class="phone-code" id="phone-code" value="+91" placeholder="+91" />
-              <input type="tel" id="phone" placeholder="98765 43210" style="flex:1" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="email" placeholder="yourname@example.com" />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label>Preferred Date *</label>
-              <input type="date" id="date" />
-            </div>
-            <div class="form-group">
-              <label>Preferred Time *</label>
-              <select id="time">
-                <option value="">Select time slot</option>
-                <option>09:00 AM – 10:00 AM</option>
-                <option>10:00 AM – 11:00 AM</option>
-                <option>11:00 AM – 12:00 PM</option>
-                <option>12:00 PM – 01:00 PM</option>
-                <option>02:00 PM – 03:00 PM</option>
-                <option>03:00 PM – 04:00 PM</option>
-                <option>04:00 PM – 05:00 PM</option>
-                <option>05:00 PM – 06:00 PM</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Service Needed *</label>
-            <select id="service">
-              <option value="">Choose a service</option>
-              <option>General Check-up & Cleaning</option>
-              <option>Teeth Whitening</option>
-              <option>Dental Implants</option>
-              <option>Orthodontics / Braces</option>
-              <option>Root Canal Treatment</option>
-              <option>Paediatric Dentistry</option>
-              <option>Tooth Extraction</option>
-              <option>Dental Crown / Bridge</option>
-              <option>Other (please specify below)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Additional Notes</label>
-            <textarea id="notes" placeholder="Any symptoms, concerns, or special requests..."></textarea>
-          </div>
-
-          <button class="form-submit" id="submitBtn" onclick="submitForm()">
-            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            Confirm Appointment
-          </button>
-
-          <div class="google-form-option">
-            <p>Or fill the appointment via Google Form</p>
-            <a href="https://forms.google.com/YOUR_FORM_ID" target="_blank" class="btn-gform">
-              <svg width="16" height="16" viewBox="0 0 48 48" fill="none">
-                <path d="M30 4H14C11.8 4 10 5.8 10 8v32c0 2.2 1.8 4 4 4h20c2.2 0 4-1.8 4-4V14L30 4z" fill="#7986CB"/>
-                <path d="M30 4v10h10L30 4z" fill="#9FA8DA"/>
-                <rect x="16" y="22" width="16" height="2" rx="1" fill="white"/>
-                <rect x="16" y="28" width="12" height="2" rx="1" fill="white"/>
-                <rect x="16" y="34" width="14" height="2" rx="1" fill="white"/>
-              </svg>
-              Open Google Form
-            </a>
-          </div>
         </div>
+    </section>
 
-        <div class="form-success" id="formSuccess">
-          <div class="success-icon">
-            <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-          </div>
-          <h4>Appointment Requested!</h4>
-          <p>Thank you! We've received your booking request and will confirm your appointment shortly via call or WhatsApp.</p>
-          <a href="https://wa.me/YOURNUMBER" target="_blank" class="btn-primary" style="display:inline-flex;margin-top:20px">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.11 1.513 5.845L.057 23.882l6.18-1.621A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.368l-.36-.214-3.7.97.988-3.613-.234-.371A9.818 9.818 0 012.182 12C2.182 6.557 6.557 2.182 12 2.182S21.818 6.557 21.818 12 17.443 21.818 12 21.818z"/></svg>
-            Follow up on WhatsApp
-          </a>
+    <!-- Why Choose Us -->
+    <section class="py-24 px-6 overflow-hidden" id="about">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-primary font-bold tracking-widest uppercase text-xs">The Excellence</h2>
+                    <h3 class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-tight">Why Maa Kama Clinic Stands Out</h3>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">We merge world-class expertise with cutting-edge medical hardware to deliver a healthcare experience that is as comfortable as it is effective.</p>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-gold/10 text-accent-gold flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">person_celebrate</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Experienced Dentists</h5>
+                                <p class="text-sm text-slate-500">Board-certified specialists.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Modern Equipment</h5>
+                                <p class="text-sm text-slate-500">AI-driven diagnostics.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">spa</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Maximum Comfort</h5>
+                                <p class="text-sm text-slate-500">Relaxing spa-like vibe.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-gold/10 text-accent-gold flex items-center justify-center">
+                                <span class="material-symbols-outlined text-xl">payments</span>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 dark:text-white">Affordability</h5>
+                                <p class="text-sm text-slate-500">Flexible payment plans.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-primary/5 rounded-[4rem] -rotate-3 translate-x-4"></div>
+                    <div class="relative rounded-[3rem] overflow-hidden shadow-2xl bg-slate-200 aspect-[4/5] md:aspect-square lg:aspect-[4/5]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbMxSmE7dqaiFjTDHqUh4_k75zgA6q6uBRpkW73CUtad8Nt_UcaVjZfMu-kEHjwLojuiwvTfaayjxNHxfOM980a3h79hOYvu0rbu-DgBlnjmXLx0yDYcknMN5esjzb8B_qHvXBT0T0fLAWPkN0MJLHR9NFMEUQ3IP9_sNKaLTC_lCcaJdJn1fOTYJH3qv2hx_pzWWnM4J3YF19q_7VDkLHPFKW3ICANGxSCVz8E1opihm8Acv9LEXwOGgQ0sbraRX2bCHHuQd5uoYz'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 text-white">
+                            <p class="text-4xl font-black">15+</p>
+                            <p class="text-sm opacity-80 uppercase tracking-widest font-bold">Years of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WhatsApp Section -->
-  <div class="whatsapp-section">
-    <div class="wa-inner">
-      <div class="wa-text">
-        <div class="section-tag">Instant Chat</div>
-        <h2 class="section-title">Prefer to Chat First?</h2>
-        <p class="section-sub">Have questions about a procedure, pricing, or want to speak to someone right away? Our team is just a tap away on WhatsApp.</p>
-      </div>
-      <a href="https://wa.me/YOURNUMBER?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment%20at%20Maa%20Kama%20Dental%20Clinic." target="_blank" class="wa-btn">
-        <div class="wa-pulse"></div>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.11 1.513 5.845L.057 23.882l6.18-1.621A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.368l-.36-.214-3.7.97.988-3.613-.234-.371A9.818 9.818 0 012.182 12C2.182 6.557 6.557 2.182 12 2.182S21.818 6.557 21.818 12 17.443 21.818 12 21.818z"/></svg>
-        Chat on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="contact-inner">
-      <div>
-        <div class="section-tag">Find Us</div>
-        <h2 class="section-title">Visit Our Clinic</h2>
-        <div class="contact-info-list">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+    <!-- Appointment Section -->
+    <section class="py-24 px-6 bg-slate-900 text-white overflow-hidden relative" id="contact">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[120px] -translate-y-1/2 translate-x-1/2"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-primary font-bold tracking-widest uppercase text-xs mb-4">Reservation</h2>
+                    <h3 class="text-4xl lg:text-6xl font-black mb-8 leading-tight">Ready for a <span class="text-primary">Better</span> Smile?</h3>
+                    <p class="text-slate-400 text-lg mb-12 max-w-md">Book your consultation today and take the first step towards a healthier, brighter smile.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">call</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Call Us</p>
+                                <p class="text-lg font-bold">+91 7070761970</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase font-bold">Email</p>
+                                <p class="text-lg font-bold">care@maakama.dental</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Google Sheets Form -->
+                <div class="bg-white dark:bg-slate-800 p-8 lg:p-12 rounded-[2.5rem] shadow-2xl shadow-primary/10">
+                    <form id="appointmentForm" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Full Name</label>
+                                <input name="FullName" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="John Doe" type="text" required/>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Phone Number</label>
+                                <input name="Phone" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="+1..." type="tel" required/>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Email Address</label>
+                            <input name="Email" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="john@example.com" type="email" required/>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Select Service</label>
+                                <select name="Service" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all" required>
+                                    <option>Teeth Cleaning</option>
+                                    <option>Root Canal</option>
+                                    <option>Dental Implants</option>
+                                    <option>Braces</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Date</label>
+                                <input name="Date" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all" type="date" required/>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase ml-1">Message</label>
+                            <textarea name="Message" class="w-full bg-slate-50 dark:bg-slate-900 border-none rounded-2xl px-5 py-4 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400" placeholder="Tell us your concern..." rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-5 rounded-2xl shadow-lg transition-all active:scale-[0.98] mt-4">
+                            Confirm Appointment
+                        </button>
+                        <p id="formStatus" class="text-center text-sm mt-2 hidden"></p>
+                    </form>
+                </div>
             </div>
-            <div>
-              <h5>Address</h5>
-              <p>Maa Kama Dental Clinic<br/>Your Street, City, State – PIN</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            </div>
-            <div>
-              <h5>Phone</h5>
-              <p>+91 XXXXX XXXXX</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            </div>
-            <div>
-              <h5>Clinic Hours</h5>
-              <p>Mon – Sat: 9:00 AM – 7:00 PM<br/>Sunday: 10:00 AM – 2:00 PM</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0f4c5c"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.11 1.513 5.845L.057 23.882l6.18-1.621A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.368l-.36-.214-3.7.97.988-3.613-.234-.371A9.818 9.818 0 012.182 12C2.182 6.557 6.557 2.182 12 2.182S21.818 6.557 21.818 12 17.443 21.818 12 21.818z"/></svg>
-            </div>
-            <div>
-              <h5>WhatsApp</h5>
-              <p><a href="https://wa.me/YOURNUMBER" target="_blank" style="color:var(--teal-mid);text-decoration:none;font-weight:600">Chat with us directly →</a></p>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="map-placeholder">
-        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        <p><strong>Replace with Google Maps embed</strong><br/>
-        Add <code style="background:rgba(0,0,0,0.05);padding:2px 6px;border-radius:4px;font-size:0.82rem">&lt;iframe&gt;</code> from Google Maps<br/>for your clinic's exact location.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-brand">
-      Maa Kama Dental Clinic
-      <span>Gentle Care · Trusted Smiles</span>
-    </div>
-    <p>© 2025 Maa Kama Dental Clinic. All rights reserved.</p>
-  </footer>
+    <!-- Testimonials Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+                <h2 class="text-primary font-bold tracking-widest uppercase text-xs">Testimonials</h2>
+                <h3 class="text-4xl font-black text-slate-900 dark:text-white">What Our Patients Say</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm relative">
+                    <div class="text-primary mb-4">
+                        <span class="material-symbols-outlined fill-1">format_quote</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8 leading-relaxed">"The level of care here is unmatched. I've always been afraid of dentists, but the calming environment and gentle staff made it so easy."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200"></div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Sarah Jenkins</h5>
+                            <p class="text-xs text-slate-500">Business Analyst</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm relative">
+                    <div class="text-primary mb-4">
+                        <span class="material-symbols-outlined fill-1">format_quote</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8 leading-relaxed">"Their use of 3D scanning made my implant process completely seamless. No messy molds, just high-tech precision. Highly recommended."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200"></div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Mark Thompson</h5>
+                            <p class="text-xs text-slate-500">Software Engineer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm relative">
+                    <div class="text-primary mb-4">
+                        <span class="material-symbols-outlined fill-1">format_quote</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 italic mb-8 leading-relaxed">"My smile makeover was life-changing. The cosmetic team at Maa Kama are true artists. I can't stop smiling now!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-200"></div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 dark:text-white">Emma Williams</h5>
+                            <p class="text-xs text-slate-500">Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/YOURNUMBER?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20an%20appointment." target="_blank" class="fab-whatsapp" title="Chat on WhatsApp">
-    <div class="fab-ring"></div>
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.551 4.11 1.513 5.845L.057 23.882l6.18-1.621A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.368l-.36-.214-3.7.97.988-3.613-.234-.371A9.818 9.818 0 012.182 12C2.182 6.557 6.557 2.182 12 2.182S21.818 6.557 21.818 12 17.443 21.818 12 21.818z"/></svg>
-  </a>
+    <!-- WhatsApp CTA -->
+    <section class="px-6 pb-24">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent-gold p-1 rounded-[3rem] shadow-2xl overflow-hidden group">
+            <div class="bg-white dark:bg-slate-900 px-8 py-12 md:px-16 rounded-[2.8rem] flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-3xl font-black mb-2 text-slate-900 dark:text-white">Need a Quick Chat?</h3>
+                    <p class="text-slate-500 dark:text-slate-400">Our medical experts are online and ready to help you with your queries.</p>
+                </div>
+                <button class="bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-xl transition-all group-hover:scale-105">
+                    <span class="material-symbols-outlined text-2xl">chat</span>
+                    CHAT ON WHATSAPP
+                </button>
+            </div>
+        </div>
+    </section>
 
-  <!-- Toast -->
-  <div class="toast" id="toast"></div>
+    <!-- Footer -->
+    <footer class="bg-slate-50 dark:bg-slate-900/50 pt-24 pb-12 px-6 border-t border-slate-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-white rounded-lg p-1 flex items-center justify-center shadow-sm">
+                            <img src="icon_512x512.png" alt="Maa Kama Logo" class="h-8 w-8 object-contain">
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Maa Kama <span class="text-primary">Dental</span></span>
+                    </div>
+                    <p class="text-slate-500 text-sm leading-relaxed">Pioneering the next era of dental excellence through innovation, empathy, and advanced medical expertise.</p>
+                    <div class="flex items-center gap-4">
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-xl">social_leaderboard</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-xl">share_reviews</span>
+                        </a>
+                        <a class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 shadow-sm flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-xl">photo_camera</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 text-slate-900 dark:text-white">Quick Links</h5>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#services">Specialized Services</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Patient Case Studies</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Pricing &amp; Plans</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 text-slate-900 dark:text-white">Our Services</h5>
+                    <ul class="space-y-4 text-sm text-slate-500">
+                        <li><a class="hover:text-primary transition-colors" href="#">Dental Implants</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Orthodontics</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Teeth Whitening</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#">Emergency Dental</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-6 text-slate-900 dark:text-white">Find Us</h5>
+                    <!-- Updated Map Section with Iframe -->
+                    <div class="rounded-2xl h-40 bg-slate-200 overflow-hidden mb-4 shadow-inner">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.1296673295637!2d87.47962037485719!3d25.79929590705171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eff9005fc9692f%3A0xd9b06b125c582dec!2sMaa%20kama%20dental%20care!5e0!3m2!1sen!2sin!4v1772819213270!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <p class="text-sm text-slate-500">QFXJ+PV8, Purnea - Srinagar Rd, Baghmara, <br/>Purnia, Bihar 854304</p>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+                <p class="text-sm text-slate-400">© 2024 Maa Kama Dental Clinic. All Rights Reserved.</p>
+                <div class="flex gap-8 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <a class="hover:text-primary" href="#">Privacy Policy</a>
+                    <a class="hover:text-primary" href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <!-- PWA Install Banner -->
-  <div class="install-banner" id="installBanner">
-    <p>Add <strong>Maa Kama Dental</strong> to your home screen for quick access.</p>
-    <button class="btn-install" id="btnInstall">Install</button>
-    <button class="btn-install-close" onclick="document.getElementById('installBanner').classList.remove('show')">✕</button>
-  </div>
+    <script>
+        // 1. Service Modal Logic
+        const modal = document.getElementById('serviceModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDescription');
+        const modalIcon = document.getElementById('modalIcon');
 
-  <!-- Service Worker + Manifest + JS -->
-  <script>
-    // ── Set min date for date picker ──
-    const dateInput = document.getElementById('date');
-    if (dateInput) {
-      const today = new Date();
-      today.setDate(today.getDate() + 1);
-      dateInput.min = today.toISOString().split('T')[0];
-    }
+        const serviceDetails = {
+            cleaning: {
+                title: "Professional Teeth Cleaning",
+                icon: "cleaning_services",
+                desc: "Our prophylaxis cleaning removes plaque and tartar buildup that regular brushing misses. We use ultrasonic scalers for comfort and polish teeth to a shine, preventing gum disease and cavities. It is recommended every 6 months for optimal oral health."
+            },
+            filling: {
+                title: "Dental Filling",
+                icon: "dentistry",
+                desc: "We use high-quality composite resins to restore teeth affected by decay or trauma. Our tooth-colored fillings are durable and aesthetically pleasing, blending perfectly with your natural tooth enamel. We ensure a pain-free experience with local anesthesia options."
+            },
+            rootcanal: {
+                title: "Root Canal Therapy",
+                icon: "medication",
+                desc: "Save your natural tooth with our advanced root canal treatment. We remove infected pulp tissue, clean the canal system using microscopic precision, and seal the tooth to prevent further infection. Modern techniques make this procedure virtually painless."
+            },
+            braces: {
+                title: "Orthodontic Braces",
+                icon: "grid_view",
+                desc: "Achieve a perfectly aligned smile with our range of orthodontic solutions. From traditional metal braces to clear ceramic options and invisible aligners, we customize the treatment plan to fit your lifestyle and dental needs."
+            },
+            implants: {
+                title: "Dental Implants",
+                icon: "add_box",
+                desc: "Regain your confidence with permanent dental implants. We surgically place titanium posts into the jawbone, providing a sturdy foundation for replacement teeth. Implants look, feel, and function just like natural teeth."
+            },
+            cosmetic: {
+                title: "Cosmetic Dentistry",
+                icon: "auto_fix_high",
+                desc: "Transform your smile with our cosmetic services. We offer professional teeth whitening, porcelain veneers, and gum contouring. Whether you want to brighten your smile or fix chips and gaps, we design the perfect look for you."
+            }
+        };
 
-    // ── Toast helper ──
-    function showToast(msg, duration = 3200) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), duration);
-    }
+        function openModal(key) {
+            const service = serviceDetails[key];
+            if (!service) return;
 
-    // ── GOOGLE APPS SCRIPT ENDPOINT ──
-    // Paste your deployed Apps Script Web App URL below:
-    const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+            modalTitle.innerText = service.title;
+            modalDesc.innerText = service.desc;
+            modalIcon.innerHTML = `<span class="material-symbols-outlined text-3xl">${service.icon}</span>`;
 
-    // ── Form Submit ──
-    async function submitForm() {
-      const fname   = document.getElementById('fname').value.trim();
-      const lname   = document.getElementById('lname').value.trim();
-      const code    = document.getElementById('phone-code').value.trim();
-      const phone   = document.getElementById('phone').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const date    = document.getElementById('date').value;
-      const time    = document.getElementById('time').value;
-      const service = document.getElementById('service').value;
-      const notes   = document.getElementById('notes').value.trim();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
 
-      // Validation
-      if (!fname || !lname) { showToast('⚠️ Please enter your full name.'); return; }
-      if (!phone)           { showToast('⚠️ Please enter your contact number.'); return; }
-      if (!/^\d{7,15}$/.test(phone.replace(/\s/g,''))) { showToast('⚠️ Please enter a valid phone number.'); return; }
-      if (!date)            { showToast('⚠️ Please choose a preferred date.'); return; }
-      if (!time)            { showToast('⚠️ Please select a time slot.'); return; }
-      if (!service)         { showToast('⚠️ Please select a service.'); return; }
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
 
-      if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-        showToast('⚠️ Apps Script URL not configured yet.');
-        return;
-      }
-
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<svg width="18" height="18" style="animation:spin 0.8s linear infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Submitting...';
-
-      const payload = {
-        firstName:   fname,
-        lastName:    lname,
-        fullName:    `${fname} ${lname}`,
-        phone:       `${code} ${phone}`,
-        email:       email || '—',
-        date:        date,
-        time:        time,
-        service:     service,
-        notes:       notes || '—',
-        submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
-      };
-
-      try {
-        // Using no-cors mode — Apps Script handles CORS via redirect
-        await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
         });
 
-        // Show success (no-cors means we can't read response, assume success)
-        document.getElementById('formBody').style.display = 'none';
-        document.getElementById('formSuccess').classList.add('show');
-        showToast('✅ Appointment saved to Google Sheet!');
+        // 2. Google Sheets Form Submission Logic
+        const form = document.getElementById('appointmentForm');
+        const statusText = document.getElementById('formStatus');
 
-      } catch (err) {
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Confirm Appointment';
-        showToast('❌ Submission failed. Please try WhatsApp instead.');
-        console.error(err);
-      }
-    }
+        // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL'; 
 
-    // ── PWA Manifest (injected) ──
-    // ── Register real Service Worker (sw.js must be in same folder) ──
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('SW registered, scope:', reg.scope))
-          .catch(err => console.warn('SW registration failed:', err));
-      });
-    }
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyGK-sbrAa-vHSEBBWSEbQTQVwrkKh8P0XcU3oGSbMb8t0wMttGUUeqPBWXlbxSs9XP/exec') {
+                statusText.innerText = "⚠️ Setup Error: Please add your Google Script URL in the code.";
+                statusText.className = "text-center text-sm mt-2 text-red-500";
+                statusText.classList.remove('hidden');
+                return;
+            }
 
-    // ── PWA Install Prompt ──
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      deferredPrompt = e;
-      setTimeout(() => document.getElementById('installBanner').classList.add('show'), 3000);
-    });
-    document.getElementById('btnInstall').addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') showToast('🎉 App installed! Find it on your home screen.');
-      deferredPrompt = null;
-      document.getElementById('installBanner').classList.remove('show');
-    });
+            statusText.innerText = "Submitting appointment...";
+            statusText.className = "text-center text-sm mt-2 text-slate-400";
+            statusText.classList.remove('hidden');
 
-    // ── Scroll-reveal using IntersectionObserver ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
+            const formData = new FormData(form);
+            const data = new URLSearchParams(formData).toString();
 
-    document.querySelectorAll('.service-card, .appt-step, .contact-item, .stat-box').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.result === 'success') {
+                    statusText.innerText = "✅ Appointment request sent successfully!";
+                    statusText.className = "text-center text-sm mt-2 text-green-500";
+                    form.reset();
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                statusText.innerText = "❌ Failed to send. Please try again.";
+                statusText.className = "text-center text-sm mt-2 text-red-500";
+            });
+        });
+    </script>
 </body>
 </html>
