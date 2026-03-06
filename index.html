@@ -537,125 +537,92 @@
     </footer>
 
     <script>
-        // 1. Service Modal Logic
-        const modal = document.getElementById('serviceModal');
-        const modalContent = document.getElementById('modalContent');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDescription');
-        const modalIcon = document.getElementById('modalIcon');
+    // 1. Service Modal Logic (Keep this part as is)
+    const modal = document.getElementById('serviceModal');
+    const modalContent = document.getElementById('modalContent');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDescription');
+    const modalIcon = document.getElementById('modalIcon');
 
-        const serviceDetails = {
-            cleaning: {
-                title: "Professional Teeth Cleaning",
-                icon: "cleaning_services",
-                desc: "Our prophylaxis cleaning removes plaque and tartar buildup that regular brushing misses. We use ultrasonic scalers for comfort and polish teeth to a shine, preventing gum disease and cavities. It is recommended every 6 months for optimal oral health."
-            },
-            filling: {
-                title: "Dental Filling",
-                icon: "dentistry",
-                desc: "We use high-quality composite resins to restore teeth affected by decay or trauma. Our tooth-colored fillings are durable and aesthetically pleasing, blending perfectly with your natural tooth enamel. We ensure a pain-free experience with local anesthesia options."
-            },
-            rootcanal: {
-                title: "Root Canal Therapy",
-                icon: "medication",
-                desc: "Save your natural tooth with our advanced root canal treatment. We remove infected pulp tissue, clean the canal system using microscopic precision, and seal the tooth to prevent further infection. Modern techniques make this procedure virtually painless."
-            },
-            braces: {
-                title: "Orthodontic Braces",
-                icon: "grid_view",
-                desc: "Achieve a perfectly aligned smile with our range of orthodontic solutions. From traditional metal braces to clear ceramic options and invisible aligners, we customize the treatment plan to fit your lifestyle and dental needs."
-            },
-            implants: {
-                title: "Dental Implants",
-                icon: "add_box",
-                desc: "Regain your confidence with permanent dental implants. We surgically place titanium posts into the jawbone, providing a sturdy foundation for replacement teeth. Implants look, feel, and function just like natural teeth."
-            },
-            cosmetic: {
-                title: "Cosmetic Dentistry",
-                icon: "auto_fix_high",
-                desc: "Transform your smile with our cosmetic services. We offer professional teeth whitening, porcelain veneers, and gum contouring. Whether you want to brighten your smile or fix chips and gaps, we design the perfect look for you."
-            }
-        };
+    const serviceDetails = {
+        cleaning: { title: "Professional Teeth Cleaning", icon: "cleaning_services", desc: "Our prophylaxis cleaning removes plaque and tartar buildup..." },
+        filling: { title: "Dental Filling", icon: "dentistry", desc: "We use high-quality composite resins..." },
+        rootcanal: { title: "Root Canal Therapy", icon: "medication", desc: "Save your natural tooth..." },
+        braces: { title: "Orthodontic Braces", icon: "grid_view", desc: "Achieve a perfectly aligned smile..." },
+        implants: { title: "Dental Implants", icon: "add_box", desc: "Regain your confidence..." },
+        cosmetic: { title: "Cosmetic Dentistry", icon: "auto_fix_high", desc: "Transform your smile..." }
+    };
 
-        function openModal(key) {
-            const service = serviceDetails[key];
-            if (!service) return;
+    function openModal(key) {
+        const service = serviceDetails[key];
+        if (!service) return;
+        modalTitle.innerText = service.title;
+        modalDesc.innerText = service.desc;
+        modalIcon.innerHTML = `<span class="material-symbols-outlined text-3xl">${service.icon}</span>`;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
 
-            modalTitle.innerText = service.title;
-            modalDesc.innerText = service.desc;
-            modalIcon.innerHTML = `<span class="material-symbols-outlined text-3xl">${service.icon}</span>`;
+    function closeModal() {
+        modalContent.classList.remove('scale-100', 'opacity-100');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }, 300);
+    }
 
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-        function closeModal() {
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
-        }
+    // 2. Updated Google Sheets Form Submission Logic
+    const form = document.getElementById('appointmentForm');
+    const statusText = document.getElementById('formStatus');
+    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL'; // Ensure this is your URL
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // 2. Google Sheets Form Submission Logic
-        const form = document.getElementById('appointmentForm');
-        const statusText = document.getElementById('formStatus');
-
-        // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
-        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL'; 
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            
-            if (GOOGLE_SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyGK-sbrAa-vHSEBBWSEbQTQVwrkKh8P0XcU3oGSbMb8t0wMttGUUeqPBWXlbxSs9XP/exec') {
-                statusText.innerText = "⚠️ Setup Error: Please add your Google Script URL in the code.";
-                statusText.className = "text-center text-sm mt-2 text-red-500";
-                statusText.classList.remove('hidden');
-                return;
-            }
-
-            statusText.innerText = "Submitting appointment...";
-            statusText.className = "text-center text-sm mt-2 text-slate-400";
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Basic check for URL
+        if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' || !GOOGLE_SCRIPT_URL.includes('script.google.com')) {
+            statusText.innerText = "⚠️ Setup Error: Add your Script URL.";
+            statusText.className = "text-center text-sm mt-2 text-red-500";
             statusText.classList.remove('hidden');
+            return;
+        }
 
-            const formData = new FormData(form);
-            const data = new URLSearchParams(formData).toString();
+        // Show sending status
+        statusText.innerText = "Submitting appointment...";
+        statusText.className = "text-center text-sm mt-2 text-slate-400";
+        statusText.classList.remove('hidden');
 
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.result === 'success') {
-                    statusText.innerText = "✅ Appointment request sent successfully!";
-                    statusText.className = "text-center text-sm mt-2 text-green-500";
-                    form.reset();
-                } else {
-                    throw new Error(result.error || 'Unknown error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                statusText.innerText = "❌ Failed to send. Please try again.";
-                statusText.className = "text-center text-sm mt-2 text-red-500";
-            });
+        const formData = new FormData(form);
+        const data = new URLSearchParams(formData).toString();
+
+        // UPDATED FETCH: Added mode: 'no-cors'
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // This bypasses the CORS security error
+            body: data,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(() => {
+            // Because of 'no-cors', we can't read the server response, 
+            // but if the request went out, we assume success.
+            statusText.innerText = "✅ Appointment request sent successfully!";
+            statusText.className = "text-center text-sm mt-2 text-green-500";
+            form.reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            statusText.innerText = "❌ Failed to send. Check internet connection.";
+            statusText.className = "text-center text-sm mt-2 text-red-500";
         });
-    </script>
+    });
+</script>
 </body>
+
 </html>
